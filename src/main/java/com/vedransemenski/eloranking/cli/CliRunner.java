@@ -1,6 +1,5 @@
 package com.vedransemenski.eloranking.cli;
 
-import com.vedransemenski.eloranking.Application;
 import com.vedransemenski.eloranking.business.Coordinator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,21 +8,22 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CliRunner implements CommandLineRunner {
-    private static Logger LOGGER = LoggerFactory
-            .getLogger(Application.class);
-    private ArgsParser argsParser;
+    private static Logger LOGGER = LoggerFactory.getLogger(CliRunner.class);
     private Coordinator coordinator;
 
-    public CliRunner(ArgsParser argsParser, Coordinator coordinator) {
-        this.argsParser = argsParser;
+    public CliRunner(Coordinator coordinator) {
         this.coordinator = coordinator;
     }
 
     @Override
     public void run(String... args) {
-        LOGGER.info("EXECUTING : command line runner");
         outputAllArgs(args);
-        CommandLineArguments arguments = ArgsParser.parseArgs(args);
+        CommandLineArguments arguments = null;
+        try {
+            arguments = ArgsParser.parseArgs(args);
+        } catch (CliArgumentsException e) {
+            LOGGER.error("Could Not accept the given arguments.", e);
+        }
         coordinator.execute(arguments);
     }
 

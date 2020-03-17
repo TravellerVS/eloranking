@@ -1,7 +1,7 @@
 package com.vedransemenski.eloranking.cli;
 
 public class CommandLineArguments {
-    String playerFilePath;
+    String namesFilePath;
 
     String matchesFilePath;
 
@@ -10,8 +10,8 @@ public class CommandLineArguments {
     public CommandLineArguments() {
     }
 
-    public CommandLineArguments withPlayerFilePath(String playerFilePath) {
-        this.playerFilePath = playerFilePath;
+    public CommandLineArguments withNamesFilePath(String playerFilePath) {
+        this.namesFilePath = playerFilePath;
         return this;
     }
 
@@ -25,8 +25,8 @@ public class CommandLineArguments {
         return this;
     }
 
-    public String getPlayerFilePath() {
-        return playerFilePath;
+    public String getNamesFilePath() {
+        return namesFilePath;
     }
 
     public String getMatchesFilePath() {

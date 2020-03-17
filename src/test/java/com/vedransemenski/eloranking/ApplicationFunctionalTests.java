@@ -3,16 +3,17 @@ package com.vedransemenski.eloranking;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ApplicationFunctionalTests {
+import java.net.URISyntaxException;
 
+class ApplicationFunctionalTests {
 
     @BeforeEach
     void setUp() {
     }
 
     @Test
-    void loadingNamesFile_returns0() {
-        Application.main(new String[]{"matches", "names", ""});
+    void loadingFiles_returns0() throws URISyntaxException {
+        Application.main(new String[]{"src/test/resources/matches", "src/test/resources/names", "command"});
     }
 
 }
