@@ -1,4 +1,4 @@
-package com.vedransemenski.eloranking.dataimport;
+package com.vedransemenski.eloranking.io.input;
 
 import com.vedransemenski.eloranking.business.Player;
 

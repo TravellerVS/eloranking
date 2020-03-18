@@ -1,4 +1,4 @@
-package com.vedransemenski.eloranking.dataimport;
+package com.vedransemenski.eloranking.io.input;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

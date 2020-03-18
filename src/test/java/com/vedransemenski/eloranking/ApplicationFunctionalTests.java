@@ -3,8 +3,6 @@ package com.vedransemenski.eloranking;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.net.URISyntaxException;
-
 class ApplicationFunctionalTests {
 
     @BeforeEach
@@ -12,8 +10,12 @@ class ApplicationFunctionalTests {
     }
 
     @Test
-    void loadingFiles_returns0() throws URISyntaxException {
-        Application.main(new String[]{"src/test/resources/matches", "src/test/resources/names", "command"});
+    void loadingFiles() {
+        Application.main(new String[]{"src/test/resources/matches", "src/test/resources/names"});
     }
 
+    @Test
+    void showRanking() {
+        Application.main(new String[]{"src/test/resources/matches", "src/test/resources/names", "src/test/resources/output", "show_ranking"});
+    }
 }

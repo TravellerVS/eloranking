@@ -1,6 +1,7 @@
 package com.vedransemenski.eloranking.cli;
 
-import com.vedransemenski.eloranking.business.Coordinator;
+import com.vedransemenski.eloranking.business.CommandExecutor;
+import com.vedransemenski.eloranking.io.input.FileImporter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -9,27 +10,37 @@ import org.springframework.stereotype.Component;
 @Component
 public class CliRunner implements CommandLineRunner {
     private static Logger LOGGER = LoggerFactory.getLogger(CliRunner.class);
-    private Coordinator coordinator;
+    private FileImporter fileImporter;
+    private CommandExecutor executor;
 
-    public CliRunner(Coordinator coordinator) {
-        this.coordinator = coordinator;
+    public CliRunner(FileImporter fileImporter, CommandExecutor executor) {
+        this.fileImporter = fileImporter;
+        this.executor = executor;
     }
 
     @Override
     public void run(String... args) {
-        outputAllArgs(args);
-        CommandLineArguments arguments = null;
         try {
-            arguments = ArgsParser.parseArgs(args);
+            executeInitialImport(args);
+            handleCommand(args);
         } catch (CliArgumentsException e) {
-            LOGGER.error("Could Not accept the given arguments.", e);
+            LOGGER.error("Could not execute program due to invalid Arguments provided", e);
+            outputHelp();
         }
-        coordinator.execute(arguments);
     }
 
-    private void outputAllArgs(String[] args) {
-        for (int i = 0; i < args.length; ++i) {
-            LOGGER.info("args[{}]: {}", i, args[i]);
-        }
+    private void handleCommand(String[] args) {
+        CommandLineCommand command = ArgsParser.extractCommand(args);
+        executor.execute(command);
+    }
+
+    private void executeInitialImport(String[] args) {
+        FilePaths filePaths = ArgsParser.extractInputFilePaths(args);
+        fileImporter.importFiles(filePaths);
+    }
+
+    private void outputHelp() {
+        LOGGER.info("-------------------");
+        LOGGER.info("-------------------");
     }
 }
