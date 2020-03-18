@@ -5,14 +5,17 @@ import org.junit.jupiter.api.Test;
 
 class ApplicationFunctionalTests {
 
-
     @BeforeEach
     void setUp() {
     }
 
     @Test
-    void loadingNamesFile_returns0() {
-        Application.main(new String[]{"matches", "names", ""});
+    void loadingFiles() {
+        Application.main(new String[]{"src/test/resources/matches", "src/test/resources/names"});
     }
 
+    @Test
+    void showRanking() {
+        Application.main(new String[]{"src/test/resources/matches", "src/test/resources/names", "src/test/resources/output", "show_ranking"});
+    }
 }
