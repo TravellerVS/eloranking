@@ -1,4 +1,4 @@
 package com.vedransemenski.eloranking.business.report;
 
-public class Report {
+public class PlayerReport {
 }

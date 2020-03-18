@@ -2,11 +2,11 @@ package com.vedransemenski.eloranking.business;
 
 import com.vedransemenski.eloranking.business.ranking.Ranking;
 import com.vedransemenski.eloranking.business.ranking.RankingCalculator;
-import com.vedransemenski.eloranking.business.report.Report;
+import com.vedransemenski.eloranking.business.report.PlayerReport;
 import com.vedransemenski.eloranking.business.report.ReportGenerator;
 import com.vedransemenski.eloranking.cli.CommandLineCommand;
 import com.vedransemenski.eloranking.io.output.RankingExporter;
-import com.vedransemenski.eloranking.io.output.SimpleReportExporter;
+import com.vedransemenski.eloranking.io.output.SimplePlayerReportExporter;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,13 +14,12 @@ public class CommandExecutor {
 
     private ReportGenerator reportGenerator;
     private RankingCalculator rankingCalculator;
-
-    private SimpleReportExporter reportExporter;
+    private SimplePlayerReportExporter reportExporter;
     private RankingExporter rankingExporter;
 
     public CommandExecutor(ReportGenerator reportGenerator,
                            RankingCalculator rankingCalculator,
-                           SimpleReportExporter reportExporter,
+                           SimplePlayerReportExporter reportExporter,
                            RankingExporter rankingExporter) {
         this.reportGenerator = reportGenerator;
         this.rankingCalculator = rankingCalculator;
@@ -32,22 +31,22 @@ public class CommandExecutor {
         switch (command.getCommand()) {
             case "show_report":
                 String playerId = command.getAdditionalParameters().get(0);
-                generateReport(playerId);
+                generateReport(playerId, command.getOutputFilePath());
                 break;
             case "show_ranking":
-                generateRanking();
+                generateRanking(command.getOutputFilePath());
                 break;
         }
     }
 
-    private void generateRanking() {
+    private void generateRanking(String outputFilePath) {
         Ranking ranking = rankingCalculator.generateRanking();
-        rankingExporter.export(ranking);
+        rankingExporter.export(ranking, outputFilePath);
     }
 
-    private void generateReport(String playerId) {
-        Report report = reportGenerator.generateReport(playerId);
-        reportExporter.export(report);
+    private void generateReport(String playerId, String outputFilePath) {
+        PlayerReport playerReport = reportGenerator.generateReport(playerId);
+        reportExporter.export(playerReport, outputFilePath);
     }
 
 }

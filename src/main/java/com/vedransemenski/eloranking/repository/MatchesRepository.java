@@ -3,6 +3,7 @@ package com.vedransemenski.eloranking.repository;
 import com.vedransemenski.eloranking.business.Match;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,5 +14,9 @@ public class MatchesRepository {
 
     public void save(Match match) {
         database.add(match);
+    }
+
+    public Collection<Match> getAll() {
+        return database;
     }
 }

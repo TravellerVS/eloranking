@@ -3,6 +3,7 @@ package com.vedransemenski.eloranking.repository;
 import com.vedransemenski.eloranking.business.Player;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +16,11 @@ public class PlayerRepository {
         database.put(entity.getId(), entity);
     }
 
-    public void get(String playerId) {
-        database.get(database.get(playerId));
+    public Player get(String playerId) {
+        return database.get(playerId);
+    }
+
+    public Collection<Player> getAll() {
+        return database.values();
     }
 }
