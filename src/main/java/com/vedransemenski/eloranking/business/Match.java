@@ -2,10 +2,18 @@ package com.vedransemenski.eloranking.business;
 
 public class Match {
     private String winnerId;
-    private String looserId;
+    private String loserId;
 
-    public Match(String winnerId, String looserId) {
+    public Match(String winnerId, String loserId) {
         this.winnerId = winnerId;
-        this.looserId = looserId;
+        this.loserId = loserId;
+    }
+
+    public String getWinnerId() {
+        return winnerId;
+    }
+
+    public String getLoserId() {
+        return loserId;
     }
 }
