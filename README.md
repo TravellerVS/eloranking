@@ -1,10 +1,27 @@
 # ELO Ranking Console App
 
+# Additional notes for Reviewer
 
-Resource for Elo rating: https://www.youtube.com/watch?v=AsYfbmp0To0
+## Resource for Elo rating
+https://www.youtube.com/watch?v=AsYfbmp0To0
+
+## Potential Improvements:
+* add static code analysis tool like CHECKSTYLE
+* add dependency security vulnerability/deprecation check
+* add more testing layers:
+    * Cucumber tests (functional)
+    * Performance
+* improve performance:
+    * process with streams from start to end (memory improvement)
+    * convert to parallel processing where applicable
+    * convert to service (up and running all the time) and process all inputs before commands come in
+    * add persistent storage - after restart same files are not imported again -> save on processing time
+* move to Java 13
+* Elo rating improvement: add non-static K-factor dependant on number of matches and player rating
+* add interactive CLI interface (Q&A/step-by-step style)
 
 ---
-## Assignment Text
+# Original Assignment Text
 
 Implement a ranking program using the Elo ranking algorithm.
 
