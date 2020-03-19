@@ -28,3 +28,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### test result files ###
+/src/test/resources/output

@@ -22,7 +22,7 @@ public class ConsoleLineFunctionalTest {
         System.setOut(console);
     }
 
-    protected String readOutput() {
+    protected String readConsoleOutput() {
         return bytes.toString();
     }
 }

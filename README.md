@@ -1,6 +1,31 @@
 # ELO Ranking Console App
 
+# How to run
+
 # Additional notes for Reviewer
+
+## Functionality explanation and rationale
+
+The program is split into 3 main phases:
+1. import data into in-memory repository
+2. process the data and generate player stats (eloRating, wins, loses...)
+3. run specific command like: show_report, show_ranking ...
+    1. gather data for that report
+    2. send it over to an Exporter and output it to the specified output file
+
+The reason for that was to make it simpler to implement and simpler understand or extend in future.
+Performance did not seem like one of major the concerns for the assignment so the focus was more on simpler design.
+
+Some additional design decisions:
+* in-memory data repository - simpler than configuring a DB, 
+* no DB entities or clear DB Pojos used - in case a database would be introduced they can be placed behind the "Repository" Services so that internal Pojos are not coupled with Database
+* execution in phases rather than streaming from input to processing to output - seemed like a simpler approach to go for processing in phases and memory performance did not seem to be highlighted as a concern or requirement
+* majority of testing is done on a Integration/Functional level
+* skipping unit testing on some classes
+    * higher order tests (functional) were more useful in this case because they could run quickly and validate the entire functionality
+    * unit tests are tied to the structure/design of this solution and I wanted to keep it flexible for the majority of time
+
+
 
 ## Resource for Elo rating
 https://www.youtube.com/watch?v=AsYfbmp0To0
