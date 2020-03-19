@@ -22,8 +22,8 @@ public class PlayerStatsGenerator {
     }
 
     private void applyMatchToPlayerStats(Match match) {
-        PlayerStats winnerStats = playerRepository.get(match.getWinnerId()).getStats();
-        PlayerStats loserStats = playerRepository.get(match.getLoserId()).getStats();
+        PlayerStats winnerStats = playerRepository.find(match.getWinnerId()).getStats();
+        PlayerStats loserStats = playerRepository.find(match.getLoserId()).getStats();
         double newWinnerEloRating = EloRatingCalculator.generateNewRating(winnerStats.getEloRating(), loserStats.getEloRating(), true);
         double newLoserEloRating = EloRatingCalculator.generateNewRating(loserStats.getEloRating(), winnerStats.getEloRating(), false);
         updateWinnerStats(match, winnerStats, newWinnerEloRating);
