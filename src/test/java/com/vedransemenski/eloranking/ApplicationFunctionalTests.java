@@ -28,9 +28,13 @@ class ApplicationFunctionalTests {
         Application.main(new String[]{RESOURCES_MATCHES, RESOURCES_NAMES, RESOURCES_OUTPUT, "show_report", "Bunny"});
     }
 
-
     @Test
     void showDetailedReport() {
         Application.main(new String[]{RESOURCES_MATCHES, RESOURCES_NAMES, RESOURCES_OUTPUT, "show_detailed_report", "Bunny"});
+    }
+
+    @Test
+    void showListOfSuggestedMatches() {
+        Application.main(new String[]{RESOURCES_MATCHES, RESOURCES_NAMES, RESOURCES_OUTPUT, "show_list_of_suggested_matches"});
     }
 }

@@ -1,15 +1,17 @@
 package com.vedransemenski.eloranking.business;
 
+import com.vedransemenski.eloranking.business.matchsuggestion.RandomMatchesGenerator;
+import com.vedransemenski.eloranking.business.matchsuggestion.SuggestedMatch;
 import com.vedransemenski.eloranking.business.ranking.Ranking;
 import com.vedransemenski.eloranking.business.ranking.RankingCalculator;
 import com.vedransemenski.eloranking.business.report.PlayerReport;
 import com.vedransemenski.eloranking.business.report.ReportGenerator;
+import com.vedransemenski.eloranking.cli.CliArgumentsException;
 import com.vedransemenski.eloranking.cli.CommandLineCommand;
-import com.vedransemenski.eloranking.io.output.DetailedPlayerReportExporter;
-import com.vedransemenski.eloranking.io.output.PlayerReportExporter;
-import com.vedransemenski.eloranking.io.output.RankingExporter;
-import com.vedransemenski.eloranking.io.output.SimplePlayerReportExporter;
+import com.vedransemenski.eloranking.io.output.*;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CommandExecutor {
@@ -19,17 +21,23 @@ public class CommandExecutor {
     private SimplePlayerReportExporter simplePlayerReportExporter;
     private DetailedPlayerReportExporter detailedPlayerReportExporter;
     private RankingExporter rankingExporter;
+    private RandomMatchesGenerator randomMatchesGenerator;
+    private MatchSuggestionExporter matchSuggestionExporter;
 
     public CommandExecutor(ReportGenerator reportGenerator,
                            RankingCalculator rankingCalculator,
                            SimplePlayerReportExporter simplePlayerReportExporter,
                            DetailedPlayerReportExporter detailedPlayerReportExporter,
-                           RankingExporter rankingExporter) {
+                           RankingExporter rankingExporter,
+                           RandomMatchesGenerator randomMatchesGenerator,
+                           MatchSuggestionExporter matchSuggestionExporter) {
         this.reportGenerator = reportGenerator;
         this.rankingCalculator = rankingCalculator;
         this.simplePlayerReportExporter = simplePlayerReportExporter;
         this.detailedPlayerReportExporter = detailedPlayerReportExporter;
         this.rankingExporter = rankingExporter;
+        this.randomMatchesGenerator = randomMatchesGenerator;
+        this.matchSuggestionExporter = matchSuggestionExporter;
     }
 
     public void execute(CommandLineCommand command) {
@@ -45,7 +53,17 @@ public class CommandExecutor {
             case "show_ranking":
                 generateRanking(outputFilePath);
                 break;
+            case "show_list_of_suggested_matches":
+                generateListOfSuggestedMatches(outputFilePath);
+                break;
+            default:
+                throw new CliArgumentsException(String.format("Given command %s was not recognised.", command.getCommand()));
         }
+    }
+
+    private void generateListOfSuggestedMatches(String outputFilePath) {
+        List<SuggestedMatch> suggestedMatches = randomMatchesGenerator.generateSuggestedMatches();
+        matchSuggestionExporter.export(suggestedMatches, outputFilePath);
     }
 
     private void generateRanking(String outputFilePath) {
