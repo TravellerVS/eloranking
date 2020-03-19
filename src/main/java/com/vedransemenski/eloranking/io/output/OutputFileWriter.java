@@ -10,6 +10,8 @@ import java.io.IOException;
 
 public class OutputFileWriter {
 
+    public static final String DELIMITER = ",";
+
     private static Logger LOGGER = LoggerFactory.getLogger(CliRunner.class);
     private BufferedWriter writer;
     private String outputFilePath;

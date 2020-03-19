@@ -16,11 +16,15 @@ public class PlayerRepository {
         database.put(entity.getId(), entity);
     }
 
-    public Player get(String playerId) {
+    public Player find(String playerId) {
         return database.get(playerId);
     }
 
-    public Collection<Player> getAll() {
+    public Player findByName(String name) {
+        return findAll().stream().filter(entry -> entry.getName().equals(name)).findFirst().orElseGet(null);
+    }
+
+    public Collection<Player> findAll() {
         return database.values();
     }
 }

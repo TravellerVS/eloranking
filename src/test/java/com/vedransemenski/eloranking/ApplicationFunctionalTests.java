@@ -25,6 +25,12 @@ class ApplicationFunctionalTests {
 
     @Test
     void showReport() {
-        Application.main(new String[]{RESOURCES_MATCHES, RESOURCES_NAMES, RESOURCES_OUTPUT, "show_report", "0"});
+        Application.main(new String[]{RESOURCES_MATCHES, RESOURCES_NAMES, RESOURCES_OUTPUT, "show_report", "Bunny"});
+    }
+
+
+    @Test
+    void showDetailedReport() {
+        Application.main(new String[]{RESOURCES_MATCHES, RESOURCES_NAMES, RESOURCES_OUTPUT, "show_detailed_report", "Bunny"});
     }
 }

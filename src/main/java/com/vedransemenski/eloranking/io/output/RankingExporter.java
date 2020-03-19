@@ -6,11 +6,12 @@ import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
 
+import static com.vedransemenski.eloranking.io.output.OutputFileWriter.DELIMITER;
+
 @Service
 public class RankingExporter {
 
-    public static final String DELIMITER = ",";
-    OutputFileWriter fileWriter;
+    private OutputFileWriter fileWriter;
 
     public void export(Ranking ranking, String outputFilePath) {
         fileWriter = new OutputFileWriter(outputFilePath);

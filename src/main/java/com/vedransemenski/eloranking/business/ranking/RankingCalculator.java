@@ -16,7 +16,7 @@ public class RankingCalculator {
     }
 
     public Ranking generateRanking() {
-        List<Player> listOfPlayersSortedByRank = playerRepository.getAll()
+        List<Player> listOfPlayersSortedByRank = playerRepository.findAll()
                 .stream()
                 .sorted(this::isRankedHigher)
                 .collect(Collectors.toList());
