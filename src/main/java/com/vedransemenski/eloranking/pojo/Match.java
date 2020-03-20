@@ -1,4 +1,4 @@
-package com.vedransemenski.eloranking.business;
+package com.vedransemenski.eloranking.pojo;
 
 public class Match {
     private String winnerId;

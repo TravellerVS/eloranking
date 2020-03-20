@@ -1,4 +1,4 @@
-package com.vedransemenski.eloranking.business;
+package com.vedransemenski.eloranking.pojo;
 
 import java.util.ArrayList;
 import java.util.List;

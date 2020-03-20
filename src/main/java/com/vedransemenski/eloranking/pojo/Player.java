@@ -1,4 +1,4 @@
-package com.vedransemenski.eloranking.business;
+package com.vedransemenski.eloranking.pojo;
 
 public class Player {
     private String id;

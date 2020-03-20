@@ -1,6 +1,6 @@
 package com.vedransemenski.eloranking.business.report;
 
-import com.vedransemenski.eloranking.business.Player;
+import com.vedransemenski.eloranking.pojo.Player;
 import com.vedransemenski.eloranking.repository.PlayerRepository;
 import org.springframework.stereotype.Service;
 

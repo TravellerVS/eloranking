@@ -1,6 +1,6 @@
 package com.vedransemenski.eloranking.io.input;
 
-import com.vedransemenski.eloranking.business.Player;
+import com.vedransemenski.eloranking.pojo.Player;
 
 public class NamesConverter {
     public static Player convertInputFileLineToDTO(String line) {

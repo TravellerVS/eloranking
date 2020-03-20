@@ -42,13 +42,12 @@ public class CommandExecutor {
 
     public void execute(CommandLineCommand command) {
         String outputFilePath = command.getOutputFilePath();
-        String playerName = (!command.getAdditionalParameters().isEmpty()) ? command.getAdditionalParameters().get(0) : null;
         switch (command.getCommand()) {
             case "show_report":
-                generateReport(playerName, outputFilePath, simplePlayerReportExporter);
+                generateReport(getPlayerName(command), outputFilePath, simplePlayerReportExporter);
                 break;
             case "show_detailed_report":
-                generateReport(playerName, outputFilePath, detailedPlayerReportExporter);
+                generateReport(getPlayerName(command), outputFilePath, detailedPlayerReportExporter);
                 break;
             case "show_ranking":
                 generateRanking(outputFilePath);
@@ -58,6 +57,14 @@ public class CommandExecutor {
                 break;
             default:
                 throw new CliArgumentsException(String.format("Given command %s was not recognised.", command.getCommand()));
+        }
+    }
+
+    private String getPlayerName(CommandLineCommand command) {
+        try {
+            return command.getAdditionalParameters().get(0);
+        } catch (IllegalStateException | IndexOutOfBoundsException e) {
+            throw new CliArgumentsException(String.format("Given command %s should contain player name.", command.getCommand()));
         }
     }
 
