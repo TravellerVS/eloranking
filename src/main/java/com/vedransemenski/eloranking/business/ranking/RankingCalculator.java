@@ -1,6 +1,6 @@
 package com.vedransemenski.eloranking.business.ranking;
 
-import com.vedransemenski.eloranking.business.Player;
+import com.vedransemenski.eloranking.pojo.Player;
 import com.vedransemenski.eloranking.repository.PlayerRepository;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +24,6 @@ public class RankingCalculator {
     }
 
     private int isRankedHigher(Player p1, Player p2) {
-        return (p1.getStats().getEloRating() > p2.getStats().getEloRating()) ? 1 : 0;
+        return (p1.getStats().getEloRating() > p2.getStats().getEloRating()) ? -1 : 1;
     }
 }

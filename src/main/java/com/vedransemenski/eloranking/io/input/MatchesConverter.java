@@ -1,6 +1,6 @@
 package com.vedransemenski.eloranking.io.input;
 
-import com.vedransemenski.eloranking.business.Match;
+import com.vedransemenski.eloranking.pojo.Match;
 
 public class MatchesConverter {
     public static Match convertInputFileLineToDTO(String line) {

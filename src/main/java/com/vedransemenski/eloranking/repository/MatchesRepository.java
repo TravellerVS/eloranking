@@ -1,6 +1,6 @@
 package com.vedransemenski.eloranking.repository;
 
-import com.vedransemenski.eloranking.business.Match;
+import com.vedransemenski.eloranking.pojo.Match;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;

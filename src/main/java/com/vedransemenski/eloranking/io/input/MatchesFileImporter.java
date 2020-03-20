@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 @Service
 public class MatchesFileImporter {
 
-    MatchesRepository repository;
+    private MatchesRepository repository;
 
     public MatchesFileImporter(MatchesRepository repository) {
         this.repository = repository;

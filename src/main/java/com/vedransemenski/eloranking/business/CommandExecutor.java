@@ -9,12 +9,16 @@ import com.vedransemenski.eloranking.business.report.ReportGenerator;
 import com.vedransemenski.eloranking.cli.CliArgumentsException;
 import com.vedransemenski.eloranking.cli.CommandLineCommand;
 import com.vedransemenski.eloranking.io.output.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class CommandExecutor {
+
+    private static Logger LOGGER = LoggerFactory.getLogger(CommandExecutor.class);
 
     private ReportGenerator reportGenerator;
     private RankingCalculator rankingCalculator;
@@ -42,13 +46,13 @@ public class CommandExecutor {
 
     public void execute(CommandLineCommand command) {
         String outputFilePath = command.getOutputFilePath();
-        String playerName = (!command.getAdditionalParameters().isEmpty()) ? command.getAdditionalParameters().get(0) : null;
+        LOGGER.info(String.format("Running command: %s", command.getCommand()));
         switch (command.getCommand()) {
             case "show_report":
-                generateReport(playerName, outputFilePath, simplePlayerReportExporter);
+                generateReport(getPlayerName(command), outputFilePath, simplePlayerReportExporter);
                 break;
             case "show_detailed_report":
-                generateReport(playerName, outputFilePath, detailedPlayerReportExporter);
+                generateReport(getPlayerName(command), outputFilePath, detailedPlayerReportExporter);
                 break;
             case "show_ranking":
                 generateRanking(outputFilePath);
@@ -58,6 +62,15 @@ public class CommandExecutor {
                 break;
             default:
                 throw new CliArgumentsException(String.format("Given command %s was not recognised.", command.getCommand()));
+        }
+        LOGGER.info(String.format("Finished and exported output to: %s", outputFilePath));
+    }
+
+    private String getPlayerName(CommandLineCommand command) {
+        try {
+            return command.getAdditionalParameters().get(0);
+        } catch (IllegalStateException | IndexOutOfBoundsException e) {
+            throw new CliArgumentsException(String.format("Given command %s should contain player name.", command.getCommand()));
         }
     }
 

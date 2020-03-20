@@ -1,7 +1,7 @@
 package com.vedransemenski.eloranking.io.output;
 
-import com.vedransemenski.eloranking.business.Player;
 import com.vedransemenski.eloranking.business.ranking.Ranking;
+import com.vedransemenski.eloranking.pojo.Player;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;

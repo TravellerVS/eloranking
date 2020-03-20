@@ -1,6 +1,34 @@
 # ELO Ranking Console App
 
+This is a player rating/ranking/reporting console App which uses ELO rating as the main algorithm for ranking players. 
+
 # How to run
+there is a elorankin.jar file that was taken out of the /target folder and put under version control.
+that .jar file should be able to run these commands 
+
+the command is structured to run as `JAVA -jar eloranking.jar path-to-matcher-file path-to-names-file path-to-desired-output-file command additional-parameters`
+
+if you are running the command from the root of the project (here):
+`JAVA -jar eloranking.jar matches names output command`
+
+Example how it was running on my machine:
+`/Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home/bin/java -Dfile.encoding=UTF-8 -jar /Users/semenskiv/MyProjects/training/eloranking/target/eloranking-0.0.1-SNAPSHOT.jar src/test/resources/matches src/test/resources/names src/test/resources/output show_ranking`
+
+### running different commands
+The different commands are: `show_ranking`, `show_report player-name`, `show_detailed_report player-name`, `show_list_of_suggested_matches`
+
+`player-name` would be substituted by the name of the player that you would like to see a report for.
+
+Examples:
+* `JAVA -jar eloranking.jar matches names output show_ranking`
+* `JAVA -jar eloranking.jar matches names output show_detailed_report Bunny`
+* `JAVA -jar eloranking.jar matches names output show_report Bunny`
+* `JAVA -jar eloranking.jar matches names output show_list_of_suggested_matches`
+
+# How to build
+You need to have java 11 setup for this to work
+
+`mvn clean package`
 
 # Additional notes for Reviewer
 
@@ -17,6 +45,7 @@ The reason for that was to make it simpler to implement and simpler understand o
 Performance did not seem like one of major the concerns for the assignment so the focus was more on simpler design.
 
 Some additional design decisions:
+* randomly generated suggested next matches - without much more context seemed like the best and simplest option
 * in-memory data repository - simpler than configuring a DB, 
 * no DB entities or clear DB Pojos used - in case a database would be introduced they can be placed behind the "Repository" Services so that internal Pojos are not coupled with Database
 * execution in phases rather than streaming from input to processing to output - seemed like a simpler approach to go for processing in phases and memory performance did not seem to be highlighted as a concern or requirement
@@ -24,18 +53,25 @@ Some additional design decisions:
 * skipping unit testing on some classes
     * higher order tests (functional) were more useful in this case because they could run quickly and validate the entire functionality
     * unit tests are tied to the structure/design of this solution and I wanted to keep it flexible for the majority of time
+* skipping performance tests - reduce complexity of work and because requirements did not mention them
 
+## Tech and Dev environment
+* Java 11
+* Spring Boot
+* Maven
+* Dev machine MacBook Pro i5 16GB RAM
 
-
-## Resource for Elo rating
+### Elo rating Main Resource
 https://www.youtube.com/watch?v=AsYfbmp0To0
 
 ## Potential Improvements:
 * add static code analysis tool like CHECKSTYLE
 * add dependency security vulnerability/deprecation check
 * add more testing layers:
-    * Cucumber tests (functional)
-    * Performance
+    * add more extensive unit testing
+    * Cucumber tests (BDD/functional)
+    * Performance & load testing
+    * mutation testing
 * improve performance:
     * process with streams from start to end (memory improvement)
     * convert to parallel processing where applicable
@@ -56,7 +92,6 @@ Given two files:
 
 2.matches, where each line contains the ID of the two players of a match and the first one is the winner of said match.
 
- 
 
 Implement a program that can read both files and then:
 
@@ -79,4 +114,4 @@ Implementation notes:
 ---
 Author: Vedran Semenski
 Email: vedsemenski@gmail.com
-LinkedIn: 
+LinkedIn: https://www.linkedin.com/in/vedransemenski/

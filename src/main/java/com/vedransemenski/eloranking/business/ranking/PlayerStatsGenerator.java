@@ -1,7 +1,7 @@
 package com.vedransemenski.eloranking.business.ranking;
 
-import com.vedransemenski.eloranking.business.Match;
-import com.vedransemenski.eloranking.business.PlayerStats;
+import com.vedransemenski.eloranking.pojo.Match;
+import com.vedransemenski.eloranking.pojo.PlayerStats;
 import com.vedransemenski.eloranking.repository.MatchesRepository;
 import com.vedransemenski.eloranking.repository.PlayerRepository;
 import org.springframework.stereotype.Service;

@@ -49,7 +49,7 @@ public class CliRunner implements CommandLineRunner {
 
     private void outputHelp() {
         LOGGER.info("-------------------");
-        LOGGER.info("THIS SHOULD CONTAIN INSTRUCTIONS FOR RUNNING THE PROGRAM CORRECTLY");
+        LOGGER.info("please read the README file for instructions on how to run the program");
         LOGGER.info("-------------------");
     }
 }
