@@ -3,7 +3,7 @@
 This is a player rating/ranking/reporting console App which uses ELO rating as the main algorithm for ranking players. 
 
 # How to run
-there is a elorankin.jar file that was taken out of the /target folder and put under version control.
+there is a `eloranking.jar` file that was taken out of the /target folder and put under version control.
 that .jar file should be able to run these commands 
 
 the command is structured to run as `JAVA -jar eloranking.jar path-to-matcher-file path-to-names-file path-to-desired-output-file command additional-parameters`
@@ -13,6 +13,35 @@ if you are running the command from the root of the project (here):
 
 Example how it was running on my machine:
 `/Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home/bin/java -Dfile.encoding=UTF-8 -jar /Users/semenskiv/MyProjects/training/eloranking/target/eloranking-0.0.1-SNAPSHOT.jar src/test/resources/matches src/test/resources/names src/test/resources/output show_ranking`
+
+### Input files
+Example input file format can be found under src/test/resources: `matches` and `names`
+
+#### matches file
+
+Matches file contains list of player matches
+Every line contains 2 player IDs separated by one space (" ").
+The first id indicates that that player WON the match.
+
+##### Example:
+
+```
+0 2
+3 1
+```
+
+#### names file
+
+Names file contains list of players.
+Every line contains the player's ID and name separated by one space (" ").
+
+##### Example:
+```
+0 Steve
+1 John
+2 Bob
+3 James
+```
 
 ### running different commands
 The different commands are: `show_ranking`, `show_report player-name`, `show_detailed_report player-name`, `show_list_of_suggested_matches`
