@@ -31,3 +31,4 @@ build/
 
 ### test result files ###
 /src/test/resources/output
+/src/test/resources/nonExistingFile3
