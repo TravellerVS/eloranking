@@ -29,6 +29,10 @@ class ApplicationFunctionalTests extends ConsoleLineFunctionalTest {
 
     protected void executeCommand(List<String> commandArguments) {
         List<String> filePathArguments = new ArrayList<>(Arrays.asList(RESOURCES_MATCHES, RESOURCES_NAMES, RESOURCES_OUTPUT));
+        executeCommand(filePathArguments, commandArguments);
+    }
+
+    protected void executeCommand(List<String> filePathArguments, List<String> commandArguments) {
         String[] arguments = combineListsIntoSingleArray(filePathArguments, commandArguments);
         Application.main(arguments);
     }

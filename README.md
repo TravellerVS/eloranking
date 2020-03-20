@@ -68,8 +68,10 @@ https://www.youtube.com/watch?v=AsYfbmp0To0
 * add static code analysis tool like CHECKSTYLE
 * add dependency security vulnerability/deprecation check
 * add more testing layers:
-    * Cucumber tests (functional)
-    * Performance
+    * add more extensive unit testing
+    * Cucumber tests (BDD/functional)
+    * Performance & load testing
+    * mutation testing
 * improve performance:
     * process with streams from start to end (memory improvement)
     * convert to parallel processing where applicable
