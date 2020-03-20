@@ -9,12 +9,16 @@ import com.vedransemenski.eloranking.business.report.ReportGenerator;
 import com.vedransemenski.eloranking.cli.CliArgumentsException;
 import com.vedransemenski.eloranking.cli.CommandLineCommand;
 import com.vedransemenski.eloranking.io.output.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class CommandExecutor {
+
+    private static Logger LOGGER = LoggerFactory.getLogger(CommandExecutor.class);
 
     private ReportGenerator reportGenerator;
     private RankingCalculator rankingCalculator;
@@ -42,6 +46,7 @@ public class CommandExecutor {
 
     public void execute(CommandLineCommand command) {
         String outputFilePath = command.getOutputFilePath();
+        LOGGER.info(String.format("Running command: %s", command.getCommand()));
         switch (command.getCommand()) {
             case "show_report":
                 generateReport(getPlayerName(command), outputFilePath, simplePlayerReportExporter);
@@ -58,6 +63,7 @@ public class CommandExecutor {
             default:
                 throw new CliArgumentsException(String.format("Given command %s was not recognised.", command.getCommand()));
         }
+        LOGGER.info(String.format("Finished and exported output to: %s", outputFilePath));
     }
 
     private String getPlayerName(CommandLineCommand command) {
