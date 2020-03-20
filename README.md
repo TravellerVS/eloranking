@@ -28,6 +28,8 @@ The first id indicates that that player WON the match.
 ```
 0 2
 3 1
+2 3
+1 0
 ```
 
 #### names file
