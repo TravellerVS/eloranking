@@ -6,7 +6,7 @@
     <artifactId>eloranking</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>eloranking</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Ranking console app based on the ELO rating algorithm</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
