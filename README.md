@@ -81,6 +81,11 @@ https://www.youtube.com/watch?v=AsYfbmp0To0
 * Elo rating improvement: add non-static K-factor dependant on number of matches and player rating
 * add interactive CLI interface (Q&A/step-by-step style)
 
+## Last notes
+* Time spent on thi solution: between 6 and 8 hours across 3 evenings
+* I did not demonstrate the usage of Mockito for example but I know how to use it.
+    * Code line coverage with these tests is currently 98%
+
 ---
 # Original Assignment Text
 
